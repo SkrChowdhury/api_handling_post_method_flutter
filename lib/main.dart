@@ -38,7 +38,7 @@ Future<DataModel?> submitData(String name, String job) async {
   var data = response.body;
   if (response.statusCode == 201) {
     String resposeString = response.body;
-    dataModelFromJson(resposeString);
+    return dataModelFromJson(resposeString);
   } else {
     return null;
   }
@@ -72,20 +72,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     hintText: 'Enter Job Title Here'),
                 controller: jobController,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed: () async {
-                    String name = nameController.text;
-                    String job = jobController.text;
-                    DataModel? data = await submitData(name, job);
-
-                    setState(() {
-                      _dataModel = data;
-                    });
-                  },
-                  child: Text('Submit')),
+                onPressed: () async {
+                  String name = nameController.text;
+                  String job = jobController.text;
+                  DataModel? data = await submitData(name, job);
+                  setState(() {
+                    _dataModel = data;
+                  });
+                },
+                child: Text('Submit'),
+              ),
             ],
           ),
         ),
