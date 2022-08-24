@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:api_handling_post_method_flutter/DataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -34,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 Future<DataModel?> submitData(String name, String job) async {
-  var response = await http.post(Uri.https('reqres.in', '/api/users'),
+  var response = await http.post(Uri.parse('https://reqres.in/api/users'),
       body: {"name": name, "job": job});
   var data = response.body;
   if (response.statusCode == 201) {
